@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wire-ops-mcp"
+version = "0.1.0"
+description = "柏讯（wire 线）客户面操作 MCP：需求单/数据面读/市场订阅，双轨鉴权透传（Logto ID token / wdk_ key）。"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "FindDataTechnology" }]
+dependencies = [
+    "fastmcp>=2.0",
+    "click",
+    "uvicorn",
+    "httpx",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio"]
+
+[project.scripts]
+wire-ops-mcp = "wire_ops_mcp.cli:cli"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["wire_ops_mcp*"]
